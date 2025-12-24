@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="lo">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professional Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;700&family=Kanit:wght@300;400;600&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0052cc;
+            --accent: #00d2ff;
+            --dark: #2c3e50;
+            --light: #f4f7f9;
+        }
+
+        body {
+            font-family: 'Poppins', 'Kanit', 'Noto Sans Lao', sans-serif;
+            margin: 0;
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        /* Navigation & Lang */
+        nav {
+            background: #fff;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .lang-switch button {
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+            margin-left: 5px;
+        }
+
+        .lang-switch button.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* Profile Header */
+        .profile-header {
+            background: #fff;
+            padding: 60px 10%;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            border-bottom: 1px solid #eee;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .profile-img-container {
+            position: relative;
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 10px solid #fff;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-info {
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .profile-info h1 {
+            font-size: 2.8rem;
+            margin: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .profile-info p.bio {
+            font-size: 1.1rem;
+            color: #666;
+            margin: 15px 0;
+            white-space: pre-line;
+            line-height: 1.8;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            color: #444;
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        /* Sections */
+        .main-content {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .content-text {
+            white-space: pre-line;
+            line-height: 1.9;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0, 82, 204, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                text-align: center;
+                padding: 40px 5%;
+            }
+
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">My Professional Resume</div>
+        <div class="lang-switch">
+            <button onclick="changeLang('lo')" id="btn-lo">ລາວ</button>
+            <button onclick="changeLang('th')" id="btn-th">ไทย</button>
+            <button onclick="changeLang('en')" id="btn-en" class="active">EN</button>
+        </div>
+    </nav>
+
+    <header class="profile-header">
+        <div class="profile-img-container">
+            <img src="https://via.placeholder.com/300" id="displayImg" class="profile-img">
+        </div>
+        <div class="profile-info">
+            <h1 id="displayName">Loading...</h1>
+            <p id="displayBio" class="bio">...</p>
+            <div class="contact-grid">
+                <div class="contact-item"><i class="fas fa-envelope"></i> <span id="displayEmail">-</span></div>
+                <div class="contact-item"><i class="fas fa-phone"></i> <span id="displayPhone">-</span></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="card">
+            <h2><i class="fas fa-briefcase"></i> <span id="title-exp">Experience</span></h2>
+            <div id="displayExp" class="content-text">-</div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-graduation-cap"></i> <span id="title-edu">Education</span></h2>
+            <div id="displayEdu" class="content-text">-</div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-star"></i> <span id="title-skills">Skills</span></h2>
+            <div id="displaySkills" class="skills-container"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDGZmA7ND52gIKsaUfjprUVW7QZdeU-Kf8",
+            authDomain: "investment-94563.firebaseapp.com",
+            databaseURL: "https://investment-94563-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "investment-94563",
+            storageBucket: "investment-94563.firebasestorage.app",
+            messagingSenderId: "566596545320",
+            appId: "1:566596545320:web:7469c13e5e59579be1fe1d"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        let currentLang = 'en';
+        let resumeData = null;
+
+        const uiLabels = {
+            lo: { exp: "ປະສົບການເຮັດວຽກ", edu: "ປະຫວັດການສຶກສາ", skills: "ທັກສະຄວາມສາມາດ" },
+            th: { exp: "ประสบการณ์การทำงาน", edu: "ประวัติการศึกษา", skills: "ทักษะและความสามารถ" },
+            en: { exp: "Work Experience", edu: "Education History", skills: "Professional Skills" }
+        };
+
+        window.changeLang = (lang) => {
+            currentLang = lang;
+            document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+            renderData();
+        };
+
+        function renderData() {
+            if (!resumeData) return;
+            const data = resumeData[currentLang];
+
+            document.getElementById('displayName').textContent = data.name;
+            document.getElementById('displayBio').textContent = data.bio;
+            document.getElementById('displayExp').textContent = data.experience;
+            document.getElementById('displayEdu').textContent = data.education;
+
+            document.getElementById('displayEmail').textContent = resumeData.common.email;
+            document.getElementById('displayPhone').textContent = resumeData.common.phone;
+            document.getElementById('displayImg').src = resumeData.common.photoUrl || "https://via.placeholder.com/300";
+
+            document.getElementById('title-exp').textContent = uiLabels[currentLang].exp;
+            document.getElementById('title-edu').textContent = uiLabels[currentLang].edu;
+            document.getElementById('title-skills').textContent = uiLabels[currentLang].skills;
+
+            const skillDiv = document.getElementById('displaySkills');
+            skillDiv.innerHTML = '';
+            const skillsArray = data.skills.split(',');
+            skillsArray.forEach(s => {
+                if (s.trim()) skillDiv.innerHTML += `<span class="skill-tag">${s.trim()}</span>`;
+            });
+        }
+
+        onValue(ref(db, 'resume_profile'), (snapshot) => {
+            resumeData = snapshot.val();
+            renderData();
+        });
+    </script>
+</body>
+
+</html>
